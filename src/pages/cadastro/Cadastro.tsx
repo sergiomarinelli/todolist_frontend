@@ -45,7 +45,7 @@ const Cadastro = () => {
                 to="/"
                 className="font-medium text-purple-600 hover:underline"
             >
-                Logar
+                Cadastrar
             </Link>
         </p>
     </div>
