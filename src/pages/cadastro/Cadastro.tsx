@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../api";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Cadastro = () => {
   interface Cadastro {
@@ -15,12 +17,23 @@ const Cadastro = () => {
     password: null,
   } as Cadastro);
 
+  const MySwal = withReactContent(Swal);
+
+  let navigate = useNavigate();
+
   const postData = async () => {
     try {
       const { data } = await API.post(`/users`, form);
-      console.log(data.message);
+      MySwal.fire({
+        title: <p>{data.message}</p>,
+        icon: "success",
+      });
+      return navigate("/");
     } catch (error: any) {
-      console.log(JSON.stringify(error.response.data.error));
+      MySwal.fire({
+        title: <p>{error.response.data.error}</p>,
+        icon: "error",
+      });
     }
   };
 

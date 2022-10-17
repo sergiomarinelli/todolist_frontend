@@ -1,18 +1,18 @@
-import { BrowserRouter, Route, Routes  } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Login from './pages/login/Login';
-import Cadastro from './pages/cadastro/Cadastro';
-import Tarefas from './pages/tarefas/Tarefas';
+import Login from "./pages/login/Login";
+import Cadastro from "./pages/cadastro/Cadastro";
+import Tarefas from "./pages/tarefas/Tarefas";
 function App() {
   return (
-  <BrowserRouter>
+    <BrowserRouter>
       <Routes>
-        <Route path="/"  element={<Login />}/>
-        <Route path="/cadastro" element={<Cadastro />}/>
-        <Route path="/tarefas" element={<Tarefas />}/>
+        <Route path="/" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/tarefas" element={<Tarefas />} />
       </Routes>
-  </BrowserRouter>
+    </BrowserRouter>
   );
 }
-    
+
 export default App;
