@@ -1,10 +1,6 @@
-import React, { createContext, ReactChild } from "react";
+import { createContext, ReactChild } from "react";
 
 import useAuth from "./hooks/useAuth";
-
-interface AuxProps {
-  children: ReactChild | ReactChild[];
-}
 
 type ContextAuthProps = {
   authenticated: boolean;
@@ -15,12 +11,17 @@ type ContextAuthProps = {
 
 const Context = createContext({} as ContextAuthProps);
 
-function AuthProvider({ children }: AuxProps) {
+function AuthProvider({ children }: any) {
   const { authenticated, handleLogin, handleLogout, loading } = useAuth();
 
   return (
     <Context.Provider
-      value={{ authenticated, handleLogin, loading, handleLogout }}
+      value={{
+        authenticated,
+        handleLogin,
+        handleLogout,
+        loading,
+      }}
     >
       {children}
     </Context.Provider>

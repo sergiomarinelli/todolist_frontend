@@ -9,8 +9,8 @@ const Login = () => {
     password: string;
   }
 
-  const teste = useContext(Context);
-  console.log(Context);
+  const { handleLogin } = useContext(Context);
+  
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -53,8 +53,7 @@ const Login = () => {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                /*  console.log(typeof handleLogin);
-                handleLogin(e, form); */
+                handleLogin(e, form);
               }}
               type="submit"
               className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
