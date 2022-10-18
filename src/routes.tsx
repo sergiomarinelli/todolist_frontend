@@ -44,12 +44,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          {/*  <CustomRoute
-            path="/tarefas"
-            element={<Tarefas />}
-            isPrivate={authenticated}
-          /> */}
-          <Route element={<CustomRoute />}>
+          <Route element={<CustomRoute isPrivate />}>
             <Route path="/tarefas" element={<Tarefas />} />
           </Route>
         </Routes>
