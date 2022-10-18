@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Context } from "../../context/AuthContext";
 import "./login.css";
 import { Link } from "react-router-dom";
 
@@ -8,12 +9,12 @@ const Login = () => {
     password: string;
   }
 
+  const teste = useContext(Context);
+  console.log(Context);
   const [form, setForm] = useState({
     email: "",
     password: "",
   } as Login);
-
-  function postData() {}
 
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -50,7 +51,11 @@ const Login = () => {
           </div>
           <div className="mt-6">
             <button
-              onClick={postData}
+              onClick={(e) => {
+                e.preventDefault();
+                /*  console.log(typeof handleLogin);
+                handleLogin(e, form); */
+              }}
               type="submit"
               className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
             >
