@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import history from "../../history";
 
@@ -10,6 +11,7 @@ type AuthInformationsProps = {
 };
 
 export default function useAuth() {
+  let navigate = useNavigate();
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +39,7 @@ export default function useAuth() {
       localStorage.setItem("token", JSON.stringify(token));
       API.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
-      history.push("/tarefas");
+      navigate("/tarefas");
     } catch (error) {
       console.log(error);
     }

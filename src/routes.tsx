@@ -4,7 +4,9 @@ import {
   RouteProps,
   BrowserRouter,
   Routes,
+  Outlet,
 } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 
 import Login from "./pages/login/Login";
 import Cadastro from "./pages/cadastro/Cadastro";
@@ -17,7 +19,7 @@ type CustomRouteProps = RouteProps & {
   isPrivate?: boolean;
 };
 
-function CustomRoute({ isPrivate, ...rest }: CustomRouteProps) {
+function CustomRoute({ isPrivate, ...rest }: CustomRouteProps): React.ReactElement | null{
   const { authenticated, loading } = useContext(Context);
 
   if (loading) {
@@ -28,21 +30,27 @@ function CustomRoute({ isPrivate, ...rest }: CustomRouteProps) {
     return <Navigate to="/" />;
   }
 
-  return <Route {...rest} />;
+  return <Outlet/>;
 }
 
 function App() {
+  const { authenticated, loading } = useContext(Context);
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/tarefas" element={<CustomRoute isPrivate />}>
-          <Route path="/tarefas" element={<Tarefas />} />
-        </Route>
-        {/*         <CustomRoute isPrivate path="/tarefas" element={<Tarefas />} />
-         */}{" "}
-      </Routes>
+      <AuthProvider> 
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+        {/*  <CustomRoute
+            path="/tarefas"
+            element={<Tarefas />}
+            isPrivate={authenticated}
+          /> */}
+          <Route element={<CustomRoute />}>
+            <Route path="/tarefas" element={<Tarefas />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
