@@ -41,7 +41,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route element={<CustomRoute />}>
+          <Route element={<CustomRoute  isPrivate/>}>
             <Route path="/tarefas" element={<Tarefas />} />
           </Route>
         </Routes>
