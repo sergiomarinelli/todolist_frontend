@@ -19,7 +19,10 @@ type CustomRouteProps = RouteProps & {
   isPrivate?: boolean;
 };
 
-function CustomRoute({ isPrivate, ...rest }: CustomRouteProps): React.ReactElement | null{
+function CustomRoute({
+  isPrivate,
+  ...rest
+}: CustomRouteProps): React.ReactElement | null {
   const { authenticated, loading } = useContext(Context);
 
   if (loading) {
@@ -30,18 +33,18 @@ function CustomRoute({ isPrivate, ...rest }: CustomRouteProps): React.ReactEleme
     return <Navigate to="/" />;
   }
 
-  return <Outlet/>;
+  return <Outlet />;
 }
 
 function App() {
   const { authenticated, loading } = useContext(Context);
   return (
     <BrowserRouter>
-      <AuthProvider> 
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-        {/*  <CustomRoute
+          {/*  <CustomRoute
             path="/tarefas"
             element={<Tarefas />}
             isPrivate={authenticated}
