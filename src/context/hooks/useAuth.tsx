@@ -36,7 +36,7 @@ export default function useAuth() {
 
       const { token } = data;
 
-      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("token", token);
       API.defaults.headers.Authorization = `Bearer ${token}`;
       setAuthenticated(true);
       navigate("/tarefas");
